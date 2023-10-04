@@ -14,14 +14,9 @@ const mailgun = mg({
 });
 
 // Middleware
-app.use(express.static('./'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cors());
-
-app.get('/', (req, res) => {
-  res.sendFile(__dirname + '/index.html'); // Sesuaikan dengan nama file HTML Anda
-});
 
 app.post('/api/email', (req, res) => {
   const { name, from, subject, message } = req.body;
