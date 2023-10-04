@@ -18,6 +18,11 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cors());
 
+// Route handling
+app.get('/', (req, res) => {
+  res.send('Selamat datang di API Belajar Portofolio BE.');
+});
+
 app.post('/api/email', (req, res) => {
   const { name, from, subject, message } = req.body;
   const emailInfo = {
@@ -32,14 +37,14 @@ app.post('/api/email', (req, res) => {
     if (error) {
       console.error(error);
       res.status(500).send({
-        message: 'Something went wrong in sending email!'
+        message: 'Ada kesalahan dalam mengirim email!'
       });
     } else {
-      res.send({ message: 'Email sent successfully!' });
+      res.send({ message: 'Email berhasil dikirim!' });
     }
   });
 });
 
 app.listen(PORT, () => {
-  console.log(`Server is running on port ${PORT}`);
+  console.log(`Server berjalan di port ${PORT}`);
 });
